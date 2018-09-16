@@ -1,0 +1,76 @@
+Note: If installing libPNG for the first time, please do not install the latest version (1.6) - some functionality required by SimpleImage has been deprecated. 
+Instead, install version 1.5* or earlier. 
+
+============ Windows ============================================================
+
+Please use the provided Visual Studio project file (found in /vs2012). This should include all
+necessary libraries (libPNG) to build the starter version of raster2d (as shown on page 1 of the
+assignment.)
+
+Users of VS2008/2010.., please follow these instructions for linking your own VS solution:
+- make a new project containing the starter files 
+- right-click the project, go to Properties -> VC++ Directories
+- in Include Directories, add the (relative!) paths to libpng and zlib
+    e.g. for the included vs2012 project, we have ../ext/libpng/include;../ext/zlib/include
+- in Library Directories, add the path to the .lib files, e.g., ../ext/win/lib/$(Configuration)
+- in Properties -> Linker -> Input, add the library names, libpng.lib;zlib.lib
+- Repeat for Debug/Release configurations
+
+(If you have trouble converting the provided starter files to earlier versions of VS, please 
+contact the course staff.)
+
+Cygwin users: you should be able to use the provided Makefile. If libpng was not installed by
+default, you will need to install the libpng-devel package separately. You may consider
+installing via a package installer like apt-cyg (https://code.google.com/p/apt-cyg/) 
+
+
+============ OSX ============================================================
+
+Please use the provided Makefile. libpng should be included with your developer tools;
+but if libPNG is not found for some reason, you can compile from source (see below) or use 
+a package manager like Fink:
+
+    http://www.finkproject.org/
+
+i.e.,
+    fink install libpng15 libpng15-shlibs
+
+(You will need to uncomment the relevant lines in the Makefile).
+Other package managers like Homebrew and MacPorts also offer easy libpng installs.
+
+
+============ Linux/Unix ============================================================
+
+Please use the provided Makefile. (Most linux distros ship with libpng already installed.)
+
+If libPNG is not found, it is easily installed using a package installer like apt-get
+on Ubuntu:
+
+     sudo apt-get install libpng-dev
+
+Or, it can be compiled from source directly. Go to:
+
+    http://libpng.sourceforge.net/
+
+And download libpng-1.2.51.tar.gz 
+(Although this is not the latest version, it is known to work with SimpleImage.)
+
+Decompress the tarball into its own directory:
+
+    tar zxvf libpng-<version>.tar.gz
+
+Navigate to that directory:
+
+    cd libpng-<...>
+
+Configure, and tell it where to install. For instance, to install to /usr/local, you
+would type:
+
+    ./configure --prefix=/usr/local
+
+Then make and install:
+    make
+    sudo make install
+
+Then, return to this directory (your hw3 starter code directory), make, and check to
+see that running the program produces the test image as described in the assignment.

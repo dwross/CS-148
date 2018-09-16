@@ -1,0 +1,2 @@
+C:\Users\Roadshow1\Documents\Stanford\CS148\Homework_3\hw3_starter\hw3_starter\vs2012\Debug
+hw3.exe C:\Users\Roadshow1\Documents\Stanford\CS148\Homework_3\hw3_starter\hw3_starter\input\question_4.tri C:\Users\Roadshow1\Documents\Stanford\CS148\Homework_3\hw3_starter\hw3_starter\input\question_4.png 400 400
