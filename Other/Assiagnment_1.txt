@@ -1,0 +1,47 @@
+#include "vdb.h"
+#include <math.h>
+#include <stdlib.h>
+
+#define PI 3.14159265
+
+int main() {
+	float red_clr[10] = {128,0,0,0,0,0,128,255,255,255};
+	float grn_clr[10] = {0,0,128,255,255,255,255,255,128,0};
+	float blu_clr[10] = {255,255,255,255,128,0,0,0,0,0};
+
+	float de = 32.0;
+
+	for(float i = 0.0; i < de; i = i+1.0) {
+	
+		for(int x = 1; x < 10; x++) {
+
+			vdb_color(red_clr[x-1]/255,grn_clr[x-1]/255,blu_clr[x-1]/255);
+
+			vdb_line(x*(-sin(PI*(i/de))),x*cos(PI*(i/de)),10-x,(10-x)*cos(PI*(i/de)),(10-x)*sin(PI*(i/de)),0);
+			vdb_line(-x*(-sin(PI*(i/de))),-x*cos(PI*(i/de)),10-x,(10-x)*cos(PI*(i/de)),(10-x)*sin(PI*(i/de)),0);
+			vdb_line(x*(-sin(PI*(i/de))),x*cos(PI*(i/de)),10-x,(x-10)*cos(PI*(i/de)),(x-10)*sin(PI*(i/de)),0);
+			vdb_line(-x*(-sin(PI*(i/de))),-x*cos(PI*(i/de)),10-x,(x-10)*cos(PI*(i/de)),(x-10)*sin(PI*(i/de)),0);
+			vdb_line(x*(-sin(PI*(i/de))),x*cos(PI*(i/de)),x-10,(10-x)*cos(PI*(i/de)),(10-x)*sin(PI*(i/de)),0);
+			vdb_line(-x*(-sin(PI*(i/de))),-x*cos(PI*(i/de)),x-10,(10-x)*cos(PI*(i/de)),(10-x)*sin(PI*(i/de)),0);
+			vdb_line(x*(-sin(PI*(i/de))),x*cos(PI*(i/de)),x-10,(x-10)*cos(PI*(i/de)),(x-10)*sin(PI*(i/de)),0);
+			vdb_line(-x*(-sin(PI*(i/de))),-x*cos(PI*(i/de)),x-10,(x-10)*cos(PI*(i/de)),(x-10)*sin(PI*(i/de)),0);
+
+			vdb_triangle(-(x-0.5)*sin(PI*(i/de)), (x-0.5)*cos(PI*(i/de)), 10-x-0.5,
+						(-x+0.5)*cos(PI*(i/de)), (-x+0.5)*sin(PI*(i/de)), 10-x-0.5,
+						 (x-0.5)*cos(PI*(i/de)), (x-0.5)*sin(PI*(i/de)), 10-x-0.5);
+
+			vdb_triangle(-(-x+0.5)*sin(PI*(i/de)),(-x+0.5)*cos(PI*(i/de)),10-x-0.5,
+						(-x+0.5)*cos(PI*(i/de)),(-x+0.5)*sin(PI*(i/de)),10-x-0.5,
+						(x-0.5)*cos(PI*(i/de)),(x-0.5)*sin(PI*(i/de)),10-x-0.5);
+
+			vdb_triangle(-(x-0.5)*sin(PI*(i/de)), (x-0.5)*cos(PI*(i/de)), -(10-x-0.5),
+						(-x+0.5)*cos(PI*(i/de)), (-x+0.5)*sin(PI*(i/de)), -(10-x-0.5),
+						 (x-0.5)*cos(PI*(i/de)), (x-0.5)*sin(PI*(i/de)), -(10-x-0.5));
+
+			vdb_triangle(-(-x+0.5)*sin(PI*(i/de)),(-x+0.5)*cos(PI*(i/de)),-(10-x-0.5),
+						(-x+0.5)*cos(PI*(i/de)),(-x+0.5)*sin(PI*(i/de)),-(10-x-0.5),
+						(x-0.5)*cos(PI*(i/de)),(x-0.5)*sin(PI*(i/de)),-(10-x-0.5));
+		}
+	}
+	return 0;
+}
